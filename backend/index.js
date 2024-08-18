@@ -1,6 +1,14 @@
 import express, { urlencoded } from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import dotenv from "dotenv"
+import connectDb from "./db/connectDb.js"
+
+dotenv.config({})
+
+connectDb()
+
+const PORT = process.env.PORT || 8000
 
 const app = express()
 
@@ -15,8 +23,6 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
-
-const PORT = 8080
 
 app.get("/", (req, res) => {
     return res.status(200).send({
